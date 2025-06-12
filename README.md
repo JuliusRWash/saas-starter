@@ -1,34 +1,43 @@
-# Next.js SaaS Starter
+# Isla Agent Platform
 
-This is a starter template for building a SaaS application using **Next.js** with support for authentication, Stripe integration for payments, and a dashboard for logged-in users.
+Build and deploy intelligent AI agents for your organization. A powerful, scalable, and intuitive agent management platform built with **Next.js** featuring modern authentication, team management, and beautiful UI animations.
 
-**Demo: [https://next-saas-start.vercel.app/](https://next-saas-start.vercel.app/)**
+**Demo: [https://isla-agent-platform.vercel.app/](https://isla-agent-platform.vercel.app/)**
 
 ## Features
 
-- Marketing landing page (`/`) with animated Terminal element
-- Pricing page (`/pricing`) which connects to Stripe Checkout
-- Dashboard pages with CRUD operations on users/teams
-- Basic RBAC with Owner and Member roles
-- Subscription management with Stripe Customer Portal
-- Email/password authentication with JWTs stored to cookies
-- Global middleware to protect logged-in routes
-- Local middleware to protect Server Actions or validate Zod schemas
-- Activity logging system for any user events
+- 🤖 **AI Agent Management**: Create, configure, and deploy intelligent agents
+- 🎨 **Beautiful UI**: Modern design with gradient effects and smooth animations
+- 👥 **Team Collaboration**: Multi-tenant architecture with role-based access control
+- 🔐 **Secure Authentication**: Email/password authentication with JWT tokens
+- 💳 **Subscription Management**: Stripe integration for premium features
+- 📊 **Analytics Dashboard**: Track agent performance and usage metrics
+- 🌙 **Dark Mode Support**: Comprehensive theming with brand-consistent colors
+- ⚡ **Real-time Updates**: Live agent status and conversation management
+
+## Design System
+
+The platform features a comprehensive design system with:
+
+- **Brand Colors**: Blue and teal gradient palette
+- **Typography**: Plus Jakarta Sans font family
+- **Animations**: Hover effects, gradient transitions, and smooth interactions
+- **Components**: Radix UI-based components with custom styling
 
 ## Tech Stack
 
-- **Framework**: [Next.js](https://nextjs.org/)
-- **Database**: [Postgres](https://www.postgresql.org/)
-- **ORM**: [Drizzle](https://orm.drizzle.team/)
-- **Payments**: [Stripe](https://stripe.com/)
-- **UI Library**: [shadcn/ui](https://ui.shadcn.com/)
+- **Framework**: [Next.js 15](https://nextjs.org/) with App Router
+- **Database**: [PostgreSQL](https://www.postgresql.org/) with [Drizzle ORM](https://orm.drizzle.team/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) with custom animations
+- **UI Components**: [Radix UI](https://www.radix-ui.com/) with custom theming
+- **Payments**: [Stripe](https://stripe.com/) for subscription management
+- **Authentication**: JWT-based with secure cookie storage
 
 ## Getting Started
 
 ```bash
-git clone https://github.com/nextjs/saas-starter
-cd saas-starter
+git clone https://github.com/your-username/isla-agent-platform
+cd isla-agent-platform
 pnpm install
 ```
 
@@ -53,7 +62,7 @@ pnpm db:migrate
 pnpm db:seed
 ```
 
-This will create the following user and team:
+This will create the following test user and organization:
 
 - User: `test@test.com`
 - Password: `admin123`
@@ -66,9 +75,9 @@ Finally, run the Next.js development server:
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the app in action.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the platform in action.
 
-You can listen for Stripe webhooks locally through their CLI to handle subscription change events:
+For Stripe webhook testing (subscription events):
 
 ```bash
 stripe listen --forward-to localhost:3000/api/stripe/webhook
@@ -76,44 +85,67 @@ stripe listen --forward-to localhost:3000/api/stripe/webhook
 
 ## Testing Payments
 
-To test Stripe payments, use the following test card details:
+To test Stripe subscriptions, use these test card details:
 
 - Card Number: `4242 4242 4242 4242`
 - Expiration: Any future date
 - CVC: Any 3-digit number
 
-## Going to Production
+## Agent Platform Features
 
-When you're ready to deploy your SaaS application to production, follow these steps:
+### Agent Management
+- Create and configure AI agents with custom instructions
+- Assign agent types (Support, Analytics, Sales, etc.)
+- Real-time status monitoring (online/offline)
+- Agent embedding for websites
+
+### Knowledge Management
+- Upload documents and files for agent training
+- FAQ management system
+- URL-based knowledge sources
+- Conversation history and analytics
+
+### Team Collaboration
+- Multi-tenant organization structure
+- Role-based permissions (Owner, Manager, Viewer)
+- Team member invitation system
+- Activity logging and audit trails
+
+## Going to Production
 
 ### Set up a production Stripe webhook
 
-1. Go to the Stripe Dashboard and create a new webhook for your production environment.
-2. Set the endpoint URL to your production API route (e.g., `https://yourdomain.com/api/stripe/webhook`).
-3. Select the events you want to listen for (e.g., `checkout.session.completed`, `customer.subscription.updated`).
+1. Create a new webhook in your Stripe Dashboard
+2. Set endpoint: `https://yourdomain.com/api/stripe/webhook`
+3. Select events: `checkout.session.completed`, `customer.subscription.updated`
 
 ### Deploy to Vercel
 
-1. Push your code to a GitHub repository.
-2. Connect your repository to [Vercel](https://vercel.com/) and deploy it.
-3. Follow the Vercel deployment process, which will guide you through setting up your project.
+1. Push code to GitHub repository
+2. Connect to [Vercel](https://vercel.com/) and deploy
+3. Configure environment variables:
 
-### Add environment variables
+```bash
+BASE_URL=https://yourdomain.com
+STRIPE_SECRET_KEY=sk_live_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+POSTGRES_URL=postgresql://...
+AUTH_SECRET=your-random-secret
+```
 
-In your Vercel project settings (or during deployment), add all the necessary environment variables. Make sure to update the values for the production environment, including:
+## Customization
 
-1. `BASE_URL`: Set this to your production domain.
-2. `STRIPE_SECRET_KEY`: Use your Stripe secret key for the production environment.
-3. `STRIPE_WEBHOOK_SECRET`: Use the webhook secret from the production webhook you created in step 1.
-4. `POSTGRES_URL`: Set this to your production database URL.
-5. `AUTH_SECRET`: Set this to a random string. `openssl rand -base64 32` will generate one.
+The platform's design system can be customized by modifying:
 
-## Other Templates
+- **Colors**: Update CSS variables in `app/globals.css`
+- **Animations**: Modify utility classes for different effects
+- **Typography**: Change font imports in `app/layout.tsx`
+- **Components**: Extend Radix UI components in `components/ui/`
 
-While this template is intentionally minimal and to be used as a learning resource, there are other paid versions in the community which are more full-featured:
+## Contributing
 
-- https://achromatic.dev
-- https://shipfa.st
-- https://makerkit.dev
-- https://zerotoshipped.com
-- https://turbostarter.dev
+We welcome contributions! Please read our contributing guidelines and submit pull requests for any improvements.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

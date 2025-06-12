@@ -1,4 +1,7 @@
 {
+  "name": "isla-agent-platform",
+  "version": "1.0.0",
+  "description": "Build and deploy intelligent AI agents for your organization. Powerful, scalable, and intuitive agent management platform.",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",

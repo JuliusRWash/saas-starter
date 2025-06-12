@@ -1,19 +1,23 @@
 import './globals.css';
 import type { Metadata, Viewport } from 'next';
-import { Manrope } from 'next/font/google';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import { getUser, getTeamForUser } from '@/lib/db/queries';
 import { SWRConfig } from 'swr';
 
 export const metadata: Metadata = {
-  title: 'Next.js SaaS Starter',
-  description: 'Get started quickly with Next.js, Postgres, and Stripe.'
+  title: 'Isla Agent Platform',
+  description: 'Build and deploy intelligent AI agents for your organization. Powerful, scalable, and intuitive agent management platform.'
 };
 
 export const viewport: Viewport = {
   maximumScale: 1
 };
 
-const manrope = Manrope({ subsets: ['latin'] });
+const plusJakartaSans = Plus_Jakarta_Sans({ 
+  subsets: ['latin'],
+  variable: '--font-plus-jakarta-sans',
+  display: 'swap'
+});
 
 export default function RootLayout({
   children
@@ -23,9 +27,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`bg-white dark:bg-gray-950 text-black dark:text-white ${manrope.className}`}
+      className={`bg-white dark:bg-gray-950 text-black dark:text-white ${plusJakartaSans.variable}`}
     >
-      <body className="min-h-[100dvh] bg-gray-50">
+      <body className="min-h-[100dvh] bg-gray-50 font-sans">
         <SWRConfig
           value={{
             fallback: {
