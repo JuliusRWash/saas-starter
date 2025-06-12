@@ -22,7 +22,7 @@ The platform features a comprehensive design system with:
 - **Brand Colors**: Blue and teal gradient palette
 - **Typography**: Plus Jakarta Sans font family
 - **Animations**: Hover effects, gradient transitions, and smooth interactions
-- **Components**: Radix UI-based components with custom styling
+- **Components**: Radix UI -based components with custom styling
 
 ## Tech Stack
 
